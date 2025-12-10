@@ -1,0 +1,65 @@
+{
+  "name": "@activatortube/react-native-web-server",
+  "version": "1.0.0",
+  "description": "A lightweight React Native web server to serve app sandbox directories as static files.",
+  "keywords": [
+    "react-native",
+    "web-server",
+    "http-server",
+    "static-files",
+    "webview",
+    "local-server",
+    "react-native-module"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "dist/typescript/index.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "react-native": "src/index.ts",
+  "files": [
+    "src",
+    "dist",
+    "ios",
+    "android",
+    "!android/build",
+    "*.podspec",
+    "react-native.config.js",
+    "!example"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run build:typescript && npm run build:commonjs && npm run build:module",
+    "build:typescript": "tsc --declaration --outDir dist/typescript --emitDeclarationOnly",
+    "build:commonjs": "tsc --module commonjs --outDir dist/commonjs --verbatimModuleSyntax false --skipLibCheck",
+    "build:module": "tsc --module esnext --outDir dist/module --skipLibCheck",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "homepage": "https://github.com/WheelerLee/react-native-web-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WheelerLee/react-native-web-server.git"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.72.0"
+  },
+  "devDependencies": {
+    "react": "19.1.0",
+    "react-native": "^0.80.1",
+    "typescript": "^5.9.3"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "packageManager": "yarn@4.5.1",
+  "codegenConfig": {
+    "name": "RNWebServerSpec",
+    "type": "modules",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.activatortube.rnwebserver"
+    }
+  }
+}
